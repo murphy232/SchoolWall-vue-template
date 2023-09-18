@@ -35,6 +35,7 @@ export const constantRoutes = [
   {
     path: '/login',
     component: () => import('@/views/login/index'),
+    //hidden:true————不显示在侧边导航栏里
     hidden: true
   },
 
@@ -47,33 +48,42 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
+    meta: { title: '我的主页', icon: 'el-icon-s-home' },
     redirect: '/dashboard',
-    children: [{
+    children: [
+      {
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/admin/home/index.vue'),
       meta: { title: '仪表盘', icon: 'dashboard' }
-    }]
+    },
+    {
+      path: 'userInfo',
+      name: 'UserInfo',
+      component: () => import('@/views/admin/home/userInfo.vue'),
+      meta: { title: '个人信息', icon: 'el-icon-user-solid' }
+    }
+    ]
   },
 
   {
-    path: '/example',
+    path: '/verify',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    redirect: '/overview',
+    name: 'Verify',
+    meta: { title: '内容审核', icon: 'el-icon-s-platform' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'reportReview',
+        name: 'ReportReview',
+        component: () => import('@/views/admin/verify/reportReview.vue'),
+        meta: { title: '举报信息审核', icon: 'el-icon-warning' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'newsReview',
+        name: 'NewsReview',
+        component: () => import('@/views/admin/verify/newsReview.vue'),
+        meta: { title: '公告信息审核', icon: 'el-icon-s-comment' }
       }
     ]
   },
@@ -83,7 +93,7 @@ export const constantRoutes = [
     component:layout,
     redirect: '/manage/userManage',
     name:'Manage',
-    meta: {title: '信息管理',icon: 'el-icon-s-cooperation'},
+    meta: {title: '系统管理',icon: 'el-icon-s-cooperation'},
     children: [
       {
         path: 'userManage',
@@ -108,73 +118,10 @@ export const constantRoutes = [
   },
 
   {
-    path: '/nested',
+    path: 'https://www.google.com',
     component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: 'menu2' }
-      }
-    ]
-  },
+    meta: {title: 'Github仓库',icon: 'el-icon-coin'},
 
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
   },
 
   // 404 page must be placed at the end !!!
